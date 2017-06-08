@@ -4,7 +4,6 @@ require('dotenv').config();
 
 // Require keystone
 var keystone = require('keystone');
-var uuid = require('uuid');
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -12,13 +11,12 @@ var uuid = require('uuid');
 keystone.init({
 	'name': 'ubinetcar',
 	'brand': 'ubinetcar',
-
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
-	'cookie secret':uuid.v4(),
+        'cookie secret':'as5d468a4d5z1xc9846s4d984as6d4',
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -33,9 +31,10 @@ keystone.import('models');
 // for each request) should be added to ./routes/middleware.js
 keystone.set('locals', {
 	_: require('lodash'),
-	env: keystone.get('env'),
+	// env: keystone.get('env'),
 	utils: keystone.utils,
 	editable: keystone.content.editable,
+    env: process.env.NODE_ENV || "production"
 });
 
 // Load your project's Routes
@@ -46,10 +45,9 @@ keystone.set('routes', require('./routes'));
 keystone.set('nav', {
 	enquiries: 'enquiries',
 	users: 'users',
+	car:'cars',
+	driving_record:'driving-records'
 });
 
 // Start Keystone to connect to your database and initialise the web server
-
-
-
 keystone.start();
