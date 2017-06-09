@@ -4,6 +4,8 @@ require('dotenv').config();
 
 // Require keystone
 var keystone = require('keystone');
+var dataReceiver =  require('./util/ReceiverDataFromMqtt');
+var uuid = require('uuid');
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -16,7 +18,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
-        'cookie secret':'as5d468a4d5z1xc9846s4d984as6d4',
+        'cookie secret':uuid.v4(),
 	'auto update': true,
 	'session': true,
 	'auth': true,
@@ -50,4 +52,5 @@ keystone.set('nav', {
 });
 
 // Start Keystone to connect to your database and initialise the web server
+dataReceiver();
 keystone.start();
