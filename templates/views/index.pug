@@ -2,22 +2,40 @@ extends ../layouts/default
 
 block content
 	.container: .jumbotron
-		img(src='/images/logo.svg', width='160')
-		h1 Welcome
-		p This is your new <a href='http://keystonejs.com' target='_blank'>KeystoneJS</a> website.
-		p It includes the latest versions of
-			| <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
-			| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
-		p Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.
-		hr
-		if user && user.canAccessKeystone
-			p
-				a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
-		else
-			p We have created a default Admin user for you with the email <strong>michaeljiang@ubilabs.com</strong> and the password <strong>admin</strong>.
-			p
-				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-				|  to use the Admin UI.
-		hr
-		p Remember to <a href='https://github.com/keystonejs/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and
-			| <a href='https://twitter.com/keystonejs' target='_blank'>follow @keystonejs</a> on twitter for updates.
+		// 大标题
+		#index-banner.section.no-pad-bot
+			.container
+				br
+				br
+				h1.header.center.orange-text UbiNeiCat
+				.row.center
+					h5.header.col.s12.light 记录并分析您的车辆行驶习惯，提供最好的车检提醒
+				.row.center
+					a#download-button.btn-large.waves-effect.waves-light.orange(href='login.html') 开始使用
+				br
+				br
+		.container
+			.section
+				// Icon Section
+				.row
+					.col.s12.m4
+						.icon-block
+							h2.center.light-blue-text
+								i.material-icons filter_1
+							h5.center First
+							p.light 将OBD传感器插入您方向盘下的OBD接口，打开手机APP进行配对连接
+					.col.s12.m4
+						.icon-block
+							h2.center.light-blue-text
+								i.material-icons filter_2
+							h5.center Seconde
+							p.light 在App的配置页面中选择您现在驾驶的车辆
+					.col.s12.m4
+						.icon-block
+							h2.center.light-blue-text
+								i.material-icons filter_3
+							h5.center Third
+							p.light 登录网站查看您的形式记录
+			br
+			br
+			.section

@@ -1,0 +1,42 @@
+extends ../layouts/default
+block content
+    .container: .jumbotron
+        #index-banner.section.no-pad-bot
+            .container
+                br
+                br
+                h3.header.center.black-text 注册
+                br
+                br
+        .container
+            .section
+                // Icon Section
+                .row
+                    form.col.s12
+                        .row
+                            .input-field.col.s12
+                                input#email.validate(type='email')
+                                label(for='email') Email
+                        .row
+                            .input-field.col.s12
+                                input#password.validate(type='password')
+                                label(for='password') Password
+                        .row
+                            .input-field.col.s6
+                                input#first_name.validate(placeholder='Placeholder', type='text')
+                                label(for='first_name') First Name
+                            .input-field.col.s6
+                                input#last_name.validate(type='text')
+                                label(for='last_name') Last Name
+                        .row
+                            .col.l3.s0
+                            .col.l6.s12.center
+                                a.waves-effect.waves-light.btn.blue(href='success/index.html') 注册
+                            .col.l3.s0
+                        .row
+                            .col.l3.s0
+                            .col.l6.s12.center
+                                a.waves-effect.waves-light.btn.white.black-text(href='success/index.html') 取消
+                            .col.l3.s0
+        br
+        br

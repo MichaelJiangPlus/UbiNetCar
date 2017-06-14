@@ -2,70 +2,42 @@ include ../mixins/flash-messages
 
 doctype html
 html
-
-	//- HTML HEADER
 	head
-		meta(charset="utf-8")
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible" content="IE=edge")
-
-		title= title || 'ubinetcar'
-		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
-
-		//- Customise the stylesheet for your site by editing /public/styles/site.less
-		//- All .less files will be automatically compiled and minified in production.
-		link(href="/styles/site.min.css", rel="stylesheet")
-
-		//- This file provides the default styling for the KeystoneJS Content Editor
-		if user && user.canAccessKeystone
-			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
-
-		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-		//- Safely remove this block if you are not targeting IE8
-		//-[if lt IE 9]
-			script(src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js")
-			script(src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js")
-		//-[endif]
-
-		//- Include template-specific stylesheets by extending the css block
-		block css
-
-		//- Add any other template-specific HEAD tags by extending the head block
+		// meta
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+		// CSS
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		link(href='/styles/site/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
+		link(href='/styles/site/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+		// 网站基础配置
+		title 首页-Ubinetcar
+		link(rel='icon', type='image/png', href='assets/img/favicon-32x32.ico')
 		block head
 
 	//- HTML BODY
 	body
-
 		//- HEADER
-		#header: .container
-
+		#header
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
+			nav.light-blue.lighten-1(role='navigation')
+				.nav-wrapper.container
+					a#logo-container.brand-logo(href='index.html')
+						i.material-icons cloud
+						| UbiNetCar
+					ul.right.hide-on-med-and-down
+						li
+							a(href='login.html') Login
+					ul#nav-mobile.side-nav
+						li
+							a(href='#') Navbar Link
+					a.button-collapse(href='#', data-activates='nav-mobile')
+						i.material-icons menu
 
-			div(role="navigation").navbar.navbar-default
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') ubinetcar
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
-							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-						ul.nav.navbar-nav.navbar-right
-							if user
-								if user.canAccessKeystone
-									li: a(href='/keystone') Open Keystone
-								li: a(href='/keystone/signout') Sign Out
-							else
-								li: a(href='/keystone/signin') Sign In
 
 		//- BODY
 		#body
-
 			//- NOTE:
 			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
 			//- Remember to include it in your templates when you override the intro and content blocks!
@@ -82,12 +54,33 @@ html
 
 
 		//- FOOTER
-		.container: #footer
-
-			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
-
-
+		#footer
+			// 页脚
+			footer.page-footer.orange
+				.container
+					.row
+						.col.l6.s12.left
+							h5.white-text UbiLabs
+							p.grey-text.text-lighten-4
+								| UbiNetCar是一个开放的项目，所有上传的车辆数据均不会向第三方机构提供，如果网站缺少您所需要的功能，
+								| 您可以直接向我们提交issue，或者根据需要提交Commit，在不影响网站稳定性和安全性的前提下，我们会将您的功能整合进网站
+						.l2
+						.col.l2.s8
+							h5.white-text Project
+							ul
+								li
+									a.white-text(href='#!') Github
+						.col.l2.s8
+							h5.white-text Contact
+							ul
+								li
+									a.white-text(href='#!') 关于我们
+								li
+									a.white-text(href='#!') 联系我们
+				.footer-copyright
+					.container
+						| Made by
+						a.orange-text.text-lighten-3(href='http://materializecss.com') Materialize
 		//- JAVASCRIPT
 
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
