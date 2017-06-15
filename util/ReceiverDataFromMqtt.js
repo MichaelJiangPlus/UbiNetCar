@@ -41,7 +41,7 @@ module.exports = function startReceiverData(){
         console.log("数据库连接成功");
     });
 
-    var client  = mqtt.connect('mqtt://10.66.15.225',{
+    var client  = mqtt.connect('mqtt://0.0.0.0',{
         username:'michaeljiang',
         password:'123456',
         clientId:uuid.v4()
