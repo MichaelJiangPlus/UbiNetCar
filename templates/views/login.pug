@@ -3,34 +3,41 @@ block content
     .container: .jumbotron
         #index-banner.section.no-pad-bot
             .container
+                .section
+                    // Icon Section
+                    .row
+                        .col.l2
+                        |
+                        .col.l8.s12.m4
+                            form.col.s12(action="/keystone/api/session/signin", method="post")
+                                .row
+                                    .input-field.col.s12
+                                        input#email.validate(name="email", type="email")
+                                        |
+                                        label(for="email") Email
+                                    |
+                                    .input-field.col.s12
+                                        input#password.validate(name="password", type="password")
+                                        |
+                                        label(for="password") Password
+                                |
+                                .row
+                                    .col.l3.s0
+                                    |
+                                    .col.l6.s12.center
+                                        button.waves-effect.waves-light.btn.blue(type="submit") 登录
+                                    |
+                                    .col.l3.s0
+                                |
+                                .row
+                                    .col.l3.s0
+                                    |
+                                    .col.l6.s12.center
+                                        a.waves-effect.waves-light.btn.red(href="register.html") 注册
+                                    |
+                                    .col.l3.s0
+                        |
+                        .col.l2
+                |
                 br
                 br
-                h3.header.center.black-text 登录
-                br
-                br
-        .container
-            .section
-                .row
-                    .col.l2
-                    .col.l8.s12.m4
-                        form.col.s12
-                            .row
-                                .input-field.col.s12
-                                    input#email.validate(type='email')
-                                    label(for='email') Email
-                                .input-field.col.s12
-                                    input#password.validate(type='password')
-                                    label(for='password') Password
-                            .row
-                                .col.l3.s0
-                                .col.l6.s12.center
-                                    a.waves-effect.waves-light.btn.blue(href='login.html') 登录
-                                .col.l3.s0
-                            .row
-                                .col.l3.s0
-                                .col.l6.s12.center
-                                    a.waves-effect.waves-light.btn.red(href='register.html') 注册
-                                .col.l3.s0
-                    .col.l2
-            br
-            br

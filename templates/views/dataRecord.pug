@@ -1,40 +1,59 @@
 doctype html
-html(lang='en')
+html(lang="en")
     head
         // meta
-        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+        meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+        |
+        meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no")
         // CSS
-        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-        link(href='/styles/site/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
-        link(href='/styles/site/style.css', type='text/css', rel='stylesheet', media='screen,projection')
-        style(type='text/css').
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+        |
+        link(href="/styles/site/materialize.css", type="text/css", rel="stylesheet", media="screen,projection")
+        |
+        link(href="/styles/site/style.css", type="text/css", rel="stylesheet", media="screen,projection")
+        |
+        style(type="text/css").
             #BaiduMap{width:100%;height:100%;}
+
+        // 网站基础配置
+        if user && user.canAccessKeystone
+            link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
         // 网站基础配置
         title 首页-Ubinetcar
-        link(rel='icon', type='image/png', href='public/images/favicon-32x32.ico')
+        |
+        link(rel="icon", type="image/png", href="assets/img/favicon-32x32.ico")
         // baidu地图配置
-        script(type='text/javascript', src='http://api.map.baidu.com/api?v=2.0&ak=3eBYnj3HCp0hK2o6unI0nP7dxgLhE1Ip')
-        script(src='/js/myjs/Chart.min.js')
+        script(type="text/javascript", src="http://api.map.baidu.com/api?v=2.0&ak=3eBYnj3HCp0hK2o6unI0nP7dxgLhE1Ip")
+        |
+        script(src="/js/myjs/Chart.min.js")
     body
-        nav.light-blue.lighten-1(role='navigation')
+        nav.light-blue.lighten-1(role="navigation")
             .nav-wrapper.container
-                a#logo-container.brand-logo(href='success/index.html')
+                a#logo-container.brand-logo(href="/")
                     i.material-icons cloud
                     | UbiNetCar
+                |
                 ul.right.hide-on-med-and-down
-                    li
-                        a(href='success/login.html') Login
+                    if user
+                        li: a(href='/dataRecord') 车辆数据管理
+                        li: a(href='/keystone') 系统管理
+                        li: a(href='/keystone/signout') 登出
+                    else
+                        li: a(href='/keystone/signin') 登陆
+                |
                 ul#nav-mobile.side-nav
                     li
-                        a(href='#') Navbar Link
-                a.button-collapse(href='#', data-activates='nav-mobile')
+                        a(href="#") Navbar Link
+                |
+                a.button-collapse(href="#", data-activates="nav-mobile")
                     i.material-icons menu
         // 大标题
         #index-banner.section.no-pad-bot
             .container
                 br
+                |
                 h5.header.center.black-text 车辆数据
+                |
                 br
         .container
             .row
@@ -43,60 +62,102 @@ html(lang='en')
                     .row
                         .col.l12.s12.center
                             canvas#myChart
+                    |
                     .row
                         .col.l12.s12.center
                             table.striped.centered
                                 thead
                                     tr
-                                        th Name
-                                        th Item Name
-                                        th Item Price
-                                        th Item Price
-                                        th Item Price
-                                        th Item Price
-                                tbody
-                                    tr
-                                        td Alvin
-                                        td Eclair
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                    tr
-                                        td Alvin
-                                        td Eclair
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                    tr
-                                        td Alvin
-                                        td Eclair
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                    tr
-                                        td Alvin
-                                        td Eclair
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                    tr
-                                        td Alvin
-                                        td Eclair
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                    tr
-                                        td Alvin
-                                        td Eclair
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
-                                        td $0.87
+                                        th Car
+                                        |
+                                        th 引擎转速
+                                        |
+                                        th 车辆速度
+                                        |
+                                        th 油量消耗
+                                        |
+                                        th 剩余油量
+                                        |
+                                        th 所在地址
+                                |
+                                cardata#carData
+                                    tr#carData1
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                    |
+                                    tr#carData2
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                    |
+                                    tr#carData3
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                    |
+                                    tr#carData4
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                    |
+                                    tr#carData5
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                    |
+                                    tr#carData6
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
+                                        |
+                                        td
                 // 右侧
                 .col.l6.s12.center
                     #BaiduMap
@@ -106,111 +167,161 @@ html(lang='en')
                 .row
                     .col.l6.s12.left
                         h5.white-text UbiLabs
+                        |
                         p.grey-text.text-lighten-4
                             | UbiNetCar是一个开放的项目，所有上传的车辆数据均不会向第三方机构提供，如果网站缺少您所需要的功能，
                             | 您可以直接向我们提交issue，或者根据需要提交Commit，在不影响网站稳定性和安全性的前提下，我们会将您的功能整合进网站
+                    |
                     .l2
+                    |
                     .col.l2.s8
                         h5.white-text Project
+                        |
                         ul
                             li
-                                a.white-text(href='#!') Github
+                                a.white-text(href="#!") Github
+                    |
                     .col.l2.s8
                         h5.white-text Contact
+                        |
                         ul
                             li
-                                a.white-text(href='#!') 关于我们
+                                a.white-text(href="#!") 关于我们
+                            |
                             li
-                                a.white-text(href='#!') 联系我们
+                                a.white-text(href="#!") 联系我们
+            |
             .footer-copyright
                 .container
                     | Made by
-                    a.orange-text.text-lighten-3(href='http://materializecss.com') Materialize
+                    a.orange-text.text-lighten-3(href="http://materializecss.com") Materialize
         // Scripts
-        script(src='/js/myjs/jquery-2.1.1.min.js')
-        script(src='/js/myjs/materialize.js')
-        script(src='/js/myjs/init.js')
-        script(type='text/javascript').
+        script(src="/js/myjs/jquery-2.1.1.min.js")
+        script(src="/js/myjs/materialize.js")
+        script(src="/js/myjs/init.js")
+        script(type="text/javascript").
+            var times = 0;
+            var map;
+            var chart ;
+            var initMap = function (height,width) {
+                $("#BaiduMap").width(width);
+                if(width*2<height){
+                    width = width-50;
+                    height = height/2;
+                }
+                $("#BaiduMap").height(height);
+                map = new BMap.Map("BaiduMap");          // 创建地图实例
+                var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+                map.centerAndZoom(point, 15);               // 初始化地图，设置中心点坐标和地图级别
+                var marker = new BMap.Marker(point);        // 创建标注
+                map.addOverlay(marker);                     // 将标注添加到地图中
+            }
+            var initChar = function () {
+                var ctx = document.getElementById('myChart').getContext('2d');
+                chart = new Chart(ctx, config);
+            }
+            var updateMap = function (location) {//geo:lng, lat
+                var point = new BMap.Point(location.lng, location.lat);  // 创建点坐标
+                map.centerAndZoom(point, 3);               // 初始化地图，设置中心点坐标和地图级别
+                map.clearOverlays()
+                var marker = new BMap.Marker(point);        // 创建标注
+                map.addOverlay(marker);                     // 将标注添加到地图中
+            }
+            var updataTable = function (data) {
+                var html = "";
+                var itemid = "#carData";
+                for( var i = 0; i < data.length; i++ ) {
+                    html = "";
+                    html +=     "<td>" + data[i].carID.carID + "</td>"
+                    html +=     "<td>" + data[i].engineSpeed + "</td>"
+                    html +=     "<td>" + data[i].vehicleSpeed + "</td>"
+                    html +=     "<td>" + data[i].engineOilTemperature + "</td>"
+                    html +=     "<td>" + data[i].mailboxLevel + "</td>"
+                    html += "<td>" + data[i].location.street1 + "</td>"
+                    $(itemid+(i+1)).html(html);
+                }
+            }
+
+            var config = {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: []
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: '车速曲线图'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: '时间'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: '车辆速度'
+                            }
+                        }]
+                    }
+                }
+            };
+
+            var updataCart = function (data) {
+                var allLine = config.data.datasets;
+                var isExist = false;
+                allLine.forEach(function (line) {
+                    if(line.label == data.carID.carID){
+                        isExist = true;
+                        if(times>10){
+                            config.data.labels.shift(); // remove the label first
+                            line.data.shift();
+                        }
+                        config.data.labels.push(times++)
+                        line.data.push(data.vehicleSpeed);
+                    }
+                })
+                var a = {
+                    label: data.carID.carID,
+                    data: [data.vehicleSpeed],
+                    fill: false,
+                };
+                if(!isExist){
+                    allLine.push(a)
+                }
+                chart.update();
+            }
+
+            var ajaxUpdata = function(){
+                $.getJSON("/getCarData", function (datas) {
+                    //Ajax请求成功
+                    new updataTable(datas);
+                    //console.log(datas[0].location)
+                    if(datas[0].location.geo != undefined)
+                        new updateMap({lat:datas[0].location.geo[1],lng:datas[0].location.geo[0]})
+                    new updataCart(datas[0]);
+                })
+            }
+
             $(document).ready(function() {
                 new function () {
-                    var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                    var config = {
-                        type: 'line',
-                        data: {
-                            labels: ["January", "February", "March", "April", "May", "June", "July"],
-                            datasets: [{
-                                label: "My First dataset",
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
-                                fill: false,
-                            }, {
-                                label: "My Second dataset",
-                                fill: false,
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            title:{
-                                display:true,
-                                text:'Chart.js Line Chart'
-                            },
-                            tooltips: {
-                                mode: 'index',
-                                intersect: false,
-                            },
-                            hover: {
-                                mode: 'nearest',
-                                intersect: true
-                            },
-                            scales: {
-                                xAxes: [{
-                                    display: true,
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Month'
-                                    }
-                                }],
-                                yAxes: [{
-                                    display: true,
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Value'
-                                    }
-                                }]
-                            }
-                        }
-                    };
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var chart = new Chart(ctx, config);
-                    function randomScalingFactor() {
-                        return {x:Math.random()*100,y:Math.random()*100}
-                    }
-                    var height = $("#test").height();
-                    var width = $("#test").width();
-                    $("#BaiduMap").width(width);
-                    if(width*2<height){
-                        width = width-50;
-                        height = height/2;
-                    }
-                    $("#BaiduMap").height(height);
-                    var map = new BMap.Map("BaiduMap");          // 创建地图实例
-                    var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
-                    map.centerAndZoom(point, 15);               // 初始化地图，设置中心点坐标和地图级别
+                    new initChar();
+                    ajaxUpdata();
+                    new initMap($("#test").height(),$("#test").width());
+                    setInterval(ajaxUpdata,1000)
                 }
             });

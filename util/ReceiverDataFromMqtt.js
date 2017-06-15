@@ -47,7 +47,7 @@ module.exports = function startReceiverData(){
         clientId:uuid.v4()
     });
     client.on('connect', function () {
-        console.log('connected.....');
+        console.log('Mqtt连接成功');
         client.subscribe('ubinetcar_driving_record');
         client.subscribe('ubinetcar_message');
     });

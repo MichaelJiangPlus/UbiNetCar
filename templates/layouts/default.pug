@@ -11,8 +11,12 @@ html
 		link(href='/styles/site/materialize.css', type='text/css', rel='stylesheet', media='screen,projection')
 		link(href='/styles/site/style.css', type='text/css', rel='stylesheet', media='screen,projection')
 		// 网站基础配置
+		if user && user.canAccessKeystone
+			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+
 		title 首页-Ubinetcar
 		link(rel='icon', type='image/png', href='assets/img/favicon-32x32.ico')
+
 		block head
 
 	//- HTML BODY
@@ -23,12 +27,17 @@ html
 			//- ... or completely change this header to suit your design.
 			nav.light-blue.lighten-1(role='navigation')
 				.nav-wrapper.container
-					a#logo-container.brand-logo(href='index.html')
+					a#logo-container.brand-logo(href='/')
 						i.material-icons cloud
 						| UbiNetCar
 					ul.right.hide-on-med-and-down
-						li
-							a(href='login.html') Login
+						if user
+							li: a(href='/dataRecord') 车辆数据管理
+							li: a(href='/keystone') 系统管理
+							li: a(href='/keystone/signout') 登出
+						else
+							li: a(href='/keystone/signin') 登陆
+							li: a(href='/register') 注册
 					ul#nav-mobile.side-nav
 						li
 							a(href='#') Navbar Link
@@ -69,7 +78,7 @@ html
 							h5.white-text Project
 							ul
 								li
-									a.white-text(href='#!') Github
+									a.white-text(href='https://github.com/AlasSilence/UbiNetCar') Github
 						.col.l2.s8
 							h5.white-text Contact
 							ul
@@ -80,14 +89,15 @@ html
 				.footer-copyright
 					.container
 						| Made by
-						a.orange-text.text-lighten-3(href='http://materializecss.com') Materialize
+						a.orange-text.text-lighten-3(href='#!') UbiLabs
 		//- JAVASCRIPT
 
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
 		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
 		//- you can upgrade to 2.1.4 (also bundled) for better performance.
-		script(src='/js/jquery/jquery-1.11.3.min.js')
-
+		script(src='/js/myjs/jquery-2.1.1.min.js')
+		script(src='/js/myjs/materialize.js')
+		script(src='/js/myjs/init.js')
 		//- Customise which Bootstrap javascript files are served by including
 		//- them specifically here, instead of bootstrap-3.3.5.min.js
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')

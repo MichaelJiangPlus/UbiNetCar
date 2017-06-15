@@ -11,12 +11,14 @@ block content
 				.row.center
 					h5.header.col.s12.light 记录并分析您的车辆行驶习惯，提供最好的车检提醒
 				.row.center
-					a#download-button.btn-large.waves-effect.waves-light.orange(href='login.html') 开始使用
+					if user
+						a#download-button.btn-large.waves-effect.waves-light.orange(href='/dataRecord') 开始使用
+					else
+						a#download-button.btn-large.waves-effect.waves-light.orange(href='/register') 开始使用
 				br
 				br
 		.container
 			.section
-				// Icon Section
 				.row
 					.col.s12.m4
 						.icon-block

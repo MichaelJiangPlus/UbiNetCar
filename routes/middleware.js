@@ -53,3 +53,6 @@ exports.requireUser = function (req, res, next) {
 		next();
 	}
 };
+exports.myLogin = function (req,res,next) {
+    res.redirect('/keystone/api/session/signin');
+}

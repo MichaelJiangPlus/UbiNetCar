@@ -4,14 +4,23 @@
 var keystone = require('keystone');
 
 exports = module.exports = function (req, res) {
-
     var view = new keystone.View(req, res);
-    var locals = res.locals;
+    var locals = {
+        adminPath: '/' + keystone.get('admin path'),
+        brand: keystone.get('brand'),
+        csrf: { header: {} },
+        logo: keystone.get('signin logo'),
+        redirect: keystone.get('signin redirect'),
+        user: req.user ? {
+            id: req.user.id,
+            name: UserList.getDocumentName(req.user) || '(no name)',
+        } : undefined,
+        userCanAccessKeystone: !!(req.user && req.user.canAccessKeystone),
+    };
 
-    // locals.section is used to set the currently selected
-    // item in the header navigation.
+    // var locals = res.locals;
     locals.section = 'login';
-
-    // Render the view
+    locals.csrf.header[keystone.security.csrf.CSRF_HEADER_KEY] = keystone.security.csrf.getToken(req, res);
     view.render('login');
 };
+

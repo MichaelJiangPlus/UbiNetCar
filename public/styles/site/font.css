@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'mixFont';
+    src: url('../fonts/SourceHanSansCN-Regular.otf');
+    unicode-range: U+4E00-9FCB;/*汉字字符集*/
+}
+html {
+    font-family: mixFont
+}
