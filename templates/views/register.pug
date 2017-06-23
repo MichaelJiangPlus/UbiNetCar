@@ -12,7 +12,7 @@ block content
             .section
                 // Icon Section
                 .row
-                    form.col.s12(action="/", method="post")
+                    form.col.s12(action="/addUser", method="post")
                         .row
                             .input-field.col.s12
                                 input#email.validate(type="email", name="email")
@@ -48,7 +48,7 @@ block content
                             |
                             .col.l6.s12.center
                                 button.waves-effect.waves-light.btn.blue(type="submit")
-                                    | 登录
+                                    | 注册
                             |
                             .col.l3.s0
                         |

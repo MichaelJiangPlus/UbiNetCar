@@ -33,10 +33,11 @@ html
 					ul.right.hide-on-med-and-down
 						if user
 							li: a(href='/dataRecord') 车辆数据管理
-							li: a(href='/keystone') 系统管理
+							if user && user.canAccessKeystone
+								li: a(href='/keystone') 系统管理
 							li: a(href='/keystone/signout') 登出
 						else
-							li: a(href='/keystone/signin') 登陆
+							li: a(href='/login') 登陆
 							li: a(href='/register') 注册
 					ul#nav-mobile.side-nav
 						li

@@ -202,46 +202,7 @@ html(lang="en")
         script(type="text/javascript").
             var times = 0;
             var map;
-            var chart ;
-            var initMap = function (height,width) {
-                $("#BaiduMap").width(width);
-                if(width*2<height){
-                    width = width-50;
-                    height = height/2;
-                }
-                $("#BaiduMap").height(height);
-                map = new BMap.Map("BaiduMap");          // 创建地图实例
-                var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
-                map.centerAndZoom(point, 17);               // 初始化地图，设置中心点坐标和地图级别
-                var marker = new BMap.Marker(point);        // 创建标注
-                map.addOverlay(marker);                     // 将标注添加到地图中
-            }
-            var initChar = function () {
-                var ctx = document.getElementById('myChart').getContext('2d');
-                chart = new Chart(ctx, config);
-            }
-            var updateMap = function (location) {//geo:lng, lat
-                var point = new BMap.Point(location.lng, location.lat);  // 创建点坐标
-                map.centerAndZoom(point,17);               // 初始化地图，设置中心点坐标和地图级别
-                map.clearOverlays()
-                var marker = new BMap.Marker(point);        // 创建标注
-                map.addOverlay(marker);                     // 将标注添加到地图中
-            }
-            var updataTable = function (data) {
-                var html = "";
-                var itemid = "#carData";
-                for( var i = 0; i < data.length; i++ ) {
-                    html = "";
-                    html +=     "<td>" + data[i].carID.carID + "</td>"
-                    html +=     "<td>" + data[i].engineSpeed + "</td>"
-                    html +=     "<td>" + data[i].vehicleSpeed + "</td>"
-                    html +=     "<td>" + data[i].engineOilTemperature + "</td>"
-                    html +=     "<td>" + data[i].mailboxLevel + "</td>"
-                    html += "<td>" + data[i].location.street1 + "</td>"
-                    $(itemid+(i+1)).html(html);
-                }
-            }
-
+            var chart;
             var config = {
                 type: 'line',
                 data: {
@@ -280,7 +241,44 @@ html(lang="en")
                     }
                 }
             };
-
+            var initMap = function (height,width) {
+                $("#BaiduMap").width(width);
+                if(width*2<height){
+                    width = width-50;
+                    height = height/2;
+                }
+                $("#BaiduMap").height(height);
+                map = new BMap.Map("BaiduMap");          // 创建地图实例
+                var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+                map.centerAndZoom(point, 17);               // 初始化地图，设置中心点坐标和地图级别
+                var marker = new BMap.Marker(point);        // 创建标注
+                map.addOverlay(marker);                     // 将标注添加到地图中
+            }
+            var initChar = function () {
+                var ctx = document.getElementById('myChart').getContext('2d');
+                chart = new Chart(ctx, config);
+            }
+            var updateMap = function (location) {//geo:lng, lat
+                var point = new BMap.Point(location.lng, location.lat);  // 创建点坐标
+                map.centerAndZoom(point,17);               // 初始化地图，设置中心点坐标和地图级别
+                map.clearOverlays()
+                var marker = new BMap.Marker(point);        // 创建标注
+                map.addOverlay(marker);                     // 将标注添加到地图中
+            }
+            var updataTable = function (data) {
+                var html = "";
+                var itemid = "#carData";
+                for( var i = 0; i < data.length; i++ ) {
+                    html = "";
+                    html +=     "<td>" + data[i].carID.carID + "</td>"
+                    html +=     "<td>" + data[i].engineSpeed + "</td>"
+                    html +=     "<td>" + data[i].vehicleSpeed + "</td>"
+                    html +=     "<td>" + data[i].engineOilTemperature + "</td>"
+                    html +=     "<td>" + data[i].mailboxLevel + "</td>"
+                    html += "<td>" + data[i].location.street1 + "</td>"
+                    $(itemid+(i+1)).html(html);
+                }
+            }
             var updataCart = function (data) {
                 var allLine = config.data.datasets;
                 var isExist = false;
@@ -305,7 +303,6 @@ html(lang="en")
                 }
                 chart.update();
             }
-
             var ajaxUpdata = function(){
                 $.getJSON("/getCarData", function (datas) {
                     //Ajax请求成功
@@ -316,7 +313,6 @@ html(lang="en")
                     new updataCart(datas[0]);
                 })
             }
-
             $(document).ready(function() {
                 new function () {
                     new initChar();
